@@ -1,21 +1,48 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+class Usuario (val cpf: String, val nome: String, val email: String)
 
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class ConteudoEducacional(var nome: String, val duracao: Int, val nivel: Nivel)
 
 data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
 
-    val inscritos = mutableListOf<Usuario>()
+    var inscritos = mutableListOf<Usuario>()
+    var inscritosLeitura: List<Usuario> = inscritos
     
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+        inscritos.add(usuario)
     }
+    
+    
 }
 
+
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+       val aulasKotlin = listOf(
+        ConteudoEducacional("Olá Mundo", 10, Nivel.BASICO),
+        ConteudoEducacional("Laços repetição", 15, Nivel.INTERMEDIARIO),
+        ConteudoEducacional("H2", 90, Nivel.AVANCADO)
+
+    )
+
+    val aulasCobol = listOf(
+        ConteudoEducacional("Declaração variáveis", 15, Nivel.BASICO),
+        ConteudoEducacional("Laços repetição", 15, Nivel.INTERMEDIARIO),
+        ConteudoEducacional("DB2", 2500, Nivel.AVANCADO)
+    )
+    
+    val formacaoKotlin = Formacao("Kotlin", aulasKotlin)
+    val formacaoCobol = Formacao("Cobol", aulasCobol)
+    
+    println(formacaoKotlin)
+    println(formacaoCobol)
+    
+    
+    val aluno1 = Usuario("1", "Nome", "Nome@email.com")
+    val aluno2 = Usuario("2", "Teste", "teste@miarroba.com")
+    
+    formacaoCobol.matricular(aluno1)
+    formacaoKotlin.matricular(aluno2)
+    
+     
 }
