@@ -13,7 +13,11 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
         inscritos.add(usuario)
     }
     
-    
+    fun imprimir(){
+            println("Usuários matriculados no curso de $nome: \n" + 
+                    inscritosLeitura.joinToString(separator = "\n") { usuario -> usuario.nome }                           )
+        
+    }    
 }
 
 
@@ -38,11 +42,19 @@ fun main() {
     println(formacaoCobol)
     
     
-    val aluno1 = Usuario("1", "Nome", "Nome@email.com")
-    val aluno2 = Usuario("2", "Teste", "teste@miarroba.com")
+    val aluno1 = Usuario("1", "Nome do aluno", "Nome@email.com")
+    val aluno2 = Usuario("2", "Teste", "teste@testmail.com.br")
+    val aluno3 = Usuario("3", "Teste três", "testetrs@tresmails.com")
     
     formacaoCobol.matricular(aluno1)
-    formacaoKotlin.matricular(aluno2)
-    
-     
+    formacaoCobol.matricular(aluno2)
+    formacaoCobol.matricular(aluno3)
+    formacaoKotlin.matricular(aluno1)
+    formacaoKotlin.matricular(aluno3)
+
+    formacaoCobol.imprimir()
+    formacaoKotlin.imprimir()
+      
 }
+
+
